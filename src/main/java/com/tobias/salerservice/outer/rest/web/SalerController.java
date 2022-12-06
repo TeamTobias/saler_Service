@@ -4,8 +4,11 @@ import com.tobias.salerservice.inner.domain.RequestSaler;
 import com.tobias.salerservice.inner.domain.ResponseSaler;
 import com.tobias.salerservice.inner.domain.Saler;
 import com.tobias.salerservice.inner.service.SalerService;
+import com.tobias.salerservice.outer.adaptor.KafkaProducer;
+import com.tobias.salerservice.outer.dto.SalerDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,7 @@ import java.util.List;
 public class SalerController {
 
     private final SalerService salerService;
+    private final KafkaProducer kafkaProducer;
 
     @GetMapping("/health_check")
     public String status(){
@@ -47,6 +51,16 @@ public class SalerController {
     @PutMapping("/saler/v1/{salerId}")
     public HttpStatus setSaler(@PathVariable("salerId") int salerId,@RequestBody RequestSaler requestSaler){
         salerService.setSaler(salerId, requestSaler);
+        return HttpStatus.OK;
+    }
+
+    @PostMapping("/saler/v1/{salerId}")
+    public HttpStatus sendSaleRequest (@PathVariable("salerId") int salerId) {
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        Saler saler = salerService.getSaler(salerId);
+        SalerDto salerDto = mapper.map(saler, SalerDto.class);
+        kafkaProducer.send("saler-topic", salerDto);
         return HttpStatus.OK;
     }
 }

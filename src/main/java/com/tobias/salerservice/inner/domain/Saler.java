@@ -25,6 +25,7 @@ public class Saler {
     private Gender gender;
     private Date birth;
     private String phone;
+    private String website;
 
     public static Saler createClient(RequestSaler requestSaler){
         Saler saler = new Saler();
@@ -34,6 +35,7 @@ public class Saler {
         saler.setGender(requestSaler.getGender());
         saler.setBirth(requestSaler.getBirth());
         saler.setPhone(requestSaler.getPhone());
+        saler.setWebsite(requestSaler.getWebsite());
         return saler;
     }
 }

@@ -41,7 +41,13 @@ public class SalerServiceImpl implements SalerService {
             saler.setGender(requestSaler.getGender());
             saler.setBirth(requestSaler.getBirth());
             saler.setPhone(requestSaler.getPhone());
+            saler.setWebsite(requestSaler.getWebsite());
             salerRepository.save(saler);
         }
+    }
+
+    @Override
+    public Saler getSaler(int salerId) {
+        return salerRepository.findById(salerId);
     }
 }

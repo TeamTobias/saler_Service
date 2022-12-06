@@ -1,11 +1,13 @@
-package com.tobias.salerservice.inner.domain;
+package com.tobias.salerservice.outer.dto;
 
+import com.tobias.salerservice.inner.domain.Saler;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class ResponseSaler {
+public class SalerDto implements Serializable {
     private int id;
     private String name;
     private String nickname;
@@ -15,3 +17,5 @@ public class ResponseSaler {
     private String phone;
     private String website;
 }
+
+
