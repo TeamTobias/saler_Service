@@ -8,4 +8,6 @@ public interface SalerService {
     Iterable<Saler> getSalersAll();
     void deleteSaler(int id);
     void setSaler(int clientId, RequestSaler client);
+
+    Saler getSaler(int salerId);
 }

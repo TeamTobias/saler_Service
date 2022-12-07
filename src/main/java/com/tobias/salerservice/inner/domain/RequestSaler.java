@@ -13,4 +13,5 @@ public class RequestSaler {
     private Saler.Gender gender;
     private Date birth;
     private String phone;
+    private String website;
 }
