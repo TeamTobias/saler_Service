@@ -3,6 +3,7 @@ package com.tobias.salerservice.outer.adaptor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tobias.salerservice.inner.domain.Saler;
 import com.tobias.salerservice.inner.repository.SalerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class KafkaConsumer {
             e.printStackTrace();
         }
 
-        //repository.save(entity);
+        Saler saler = repository.findById((int)map.get("salerId"));
+        saler.setVerified(true);
+        repository.save(saler);
     }
 }
