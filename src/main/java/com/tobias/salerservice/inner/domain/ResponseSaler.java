@@ -11,7 +11,8 @@ public class ResponseSaler {
     private String nickname;
     private String email;
     private String gender;
-    private Date birth;
+    private String birth;
     private String phone;
     private String website;
+    private boolean verified;
 }

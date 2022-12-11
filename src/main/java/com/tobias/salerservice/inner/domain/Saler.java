@@ -20,9 +20,10 @@ public class Saler {
     private String nickname;
     private String email;
     private String gender;
-    private Date birth;
+    private String birth;
     private String phone;
     private String website;
+    private boolean verified;
 
     public static Saler createClient(RequestSaler requestSaler){
         Saler saler = new Saler();
@@ -33,6 +34,7 @@ public class Saler {
         saler.setBirth(requestSaler.getBirth());
         saler.setPhone(requestSaler.getPhone());
         saler.setWebsite(requestSaler.getWebsite());
+        saler.setVerified(false);
         return saler;
     }
 }
