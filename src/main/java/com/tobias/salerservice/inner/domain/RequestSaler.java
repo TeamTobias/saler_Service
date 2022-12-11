@@ -10,7 +10,7 @@ public class RequestSaler {
     private String name;
     private String nickname;
     private String email;
-    private Saler.Gender gender;
+    private String gender;
     private Date birth;
     private String phone;
     private String website;
