@@ -13,19 +13,17 @@ import java.util.Date;
 @Setter
 @Entity
 public class Saler {
-    public enum Gender{
-        MALE, FEMALE
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String nickname;
     private String email;
-    private Gender gender;
-    private Date birth;
+    private String gender;
+    private String birth;
     private String phone;
     private String website;
+    private boolean verified;
 
     public static Saler createClient(RequestSaler requestSaler){
         Saler saler = new Saler();
@@ -36,6 +34,7 @@ public class Saler {
         saler.setBirth(requestSaler.getBirth());
         saler.setPhone(requestSaler.getPhone());
         saler.setWebsite(requestSaler.getWebsite());
+        saler.setVerified(false);
         return saler;
     }
 }

@@ -10,8 +10,9 @@ public class ResponseSaler {
     private String name;
     private String nickname;
     private String email;
-    private Saler.Gender gender;
-    private Date birth;
+    private String gender;
+    private String birth;
     private String phone;
     private String website;
+    private boolean verified;
 }
